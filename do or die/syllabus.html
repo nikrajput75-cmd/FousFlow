@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#060d1f">
+<title>FocusFlow | Syllabus</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="fx.css">
+<link rel="stylesheet" href="glass.css">
+<script src="script.js" defer></script>
+</head>
+<body data-page="syllabus"><div class="app-shell"><main class="main-content">
+<header class="topbar"><div class="breadcrumb"><span>Workspace</span><span class="breadcrumb-slash">/</span><strong>Syllabus</strong></div><time class="today-label" id="today-label"></time></header>
+<nav class="section-nav" aria-label="Study planning"><a class="section-nav-link" href="tasks.html">Tasks</a><a class="section-nav-link" href="schedule.html">Schedule</a><a class="section-nav-link is-current" href="syllabus.html" aria-current="page">Syllabus</a></nav>
+<section class="study-heading"><p class="eyebrow"><span class="eyebrow-line"></span> YOUR LEARNING PLAN</p><h1>Track your <span>syllabus.</span></h1><p class="welcome-description">Keep your subjects, chapters and revision progress together. Your profiles stay separate when you change class or session.</p></section>
+<section class="syllabus-setup glass" aria-labelledby="syllabus-setup-title">
+<h2 id="syllabus-setup-title">Set up your profile</h2>
+<div class="syllabus-profile-fields">
+<label class="schedule-field" for="syllabus-class">Class<select id="syllabus-class"><option value="9">Class 9</option><option value="10">Class 10</option><option value="11">Class 11</option><option value="12">Class 12</option></select></label>
+<label class="schedule-field" for="syllabus-board">Board<select id="syllabus-board"><option value="CBSE">CBSE</option><option value="CISCE">CISCE</option><option value="State Board">State board</option><option value="Other">Other</option></select></label>
+<label class="schedule-field stream-field" for="syllabus-stream">Stream<select id="syllabus-stream"><option value="Science PCM">Science PCM</option><option value="Science PCB">Science PCB</option><option value="Commerce">Commerce</option><option value="Humanities">Humanities</option></select></label>
+<label class="schedule-field" for="syllabus-session">Academic session<select id="syllabus-session"><option>2024-25</option><option>2025-26</option><option selected>2026-27</option><option>2027-28</option><option>2028-29</option><option>2029-30</option><option>2030-31</option></select></label>
+</div>
+<p class="syllabus-profile-note" id="syllabus-profile-note"></p>
+<h3>Choose your subjects</h3>
+<div class="syllabus-subject-choices" id="syllabus-subject-choices" aria-label="Choose subjects"></div>
+<form class="custom-subject-form" id="custom-subject-form"><label for="custom-subject">Add another subject</label><input id="custom-subject" type="text" maxlength="60" placeholder="For example, Physical Education"><button class="add-button ghost" type="submit">Add subject</button></form>
+</section>
+<section class="syllabus-progress-section" aria-labelledby="syllabus-progress-title">
+<div class="syllabus-overall glass"><div><p class="summary-label">OVERALL SYLLABUS PROGRESS</p><h2 id="syllabus-progress-title">0 of 0 chapters complete</h2></div><strong id="syllabus-overall-percent">0%</strong><div class="progress-track" id="syllabus-overall-bar" role="progressbar" aria-label="Overall syllabus progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="progress-fill" id="syllabus-overall-fill"></span></div></div>
+<div class="section-heading syllabus-heading"><div><h2>Subject chapters</h2></div><label class="schedule-filter" for="chapter-filter">Chapter status<select id="chapter-filter"><option value="all">All</option><option value="not-started">Not started</option><option value="in-progress">In progress</option><option value="completed">Completed</option></select></label></div>
+<form class="chapter-form glass" id="chapter-form" novalidate>
+<h3>Add or edit a chapter</h3><input id="chapter-edit-id" type="hidden">
+<div class="chapter-form-fields">
+<label class="schedule-field" for="chapter-subject">Subject<select id="chapter-subject"></select></label>
+<label class="schedule-field" for="chapter-title">Chapter title<input id="chapter-title" type="text" maxlength="160" required placeholder="Copy the title from the NCERT contents page"></label>
+<label class="schedule-field" for="chapter-order">Textbook order<input id="chapter-order" type="number" min="1" max="999" required value="1"></label>
+<label class="schedule-field" for="chapter-exam-status">Board exam status (check the current official syllabus)<select id="chapter-exam-status"><option value="unverified">Not checked</option><option value="included">I checked: included</option><option value="excluded">I checked: not included</option></select></label>
+<label class="schedule-field chapter-notes-field" for="chapter-notes">Short note (optional)<input id="chapter-notes" type="text" maxlength="500" placeholder="Add a reminder or source detail"></label>
+</div>
+<div class="schedule-form-actions"><button class="add-button" id="chapter-submit" type="submit">Add chapter</button><button class="add-button ghost" id="chapter-cancel" type="button" hidden>Cancel edit</button></div>
+<p class="form-message" id="chapter-form-message" role="status" aria-live="polite"></p>
+</form>
+<p class="syllabus-source-warning" id="syllabus-source-warning" role="status"></p>
+<div class="syllabus-subject-list" id="syllabus-subject-list"></div>
+</section>
+<section class="syllabus-sources block" aria-labelledby="syllabus-sources-title"><h2 id="syllabus-sources-title">Official references</h2><p>Check the NCERT textbook index for textbook order and your board's curriculum for the examination syllabus. Chapter inclusion can differ between them.</p><div class="btnrow" id="syllabus-reference-list"></div><p class="syllabus-data-note" id="syllabus-data-note"></p></section>
+</main></div></body></html>

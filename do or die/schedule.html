@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#060d1f">
+<title>FocusFlow | Schedule</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="fx.css">
+<link rel="stylesheet" href="glass.css">
+<script src="script.js" defer></script>
+</head>
+<body data-page="schedule"><div class="app-shell"><main class="main-content">
+<header class="topbar"><div class="breadcrumb"><span>Workspace</span><span class="breadcrumb-slash">/</span><strong>Schedule</strong></div><time class="today-label" id="today-label"></time></header>
+<nav class="section-nav" aria-label="Study planning"><a class="section-nav-link" href="tasks.html">Tasks</a><a class="section-nav-link is-current" href="schedule.html" aria-current="page">Schedule</a><a class="section-nav-link" href="syllabus.html">Syllabus</a></nav>
+<section class="study-heading"><p class="eyebrow"><span class="eyebrow-line"></span> PLAN AHEAD</p><h1>Make room for <span>what matters.</span></h1><p class="welcome-description">Plan tasks for today or any future date. Scheduled tasks join your daily list when they’re due.</p></section>
+<section class="schedule-panel glass" aria-labelledby="schedule-form-title">
+<h2 id="schedule-form-title">Add a scheduled task</h2>
+<form id="schedule-form" class="schedule-form" novalidate>
+<label class="schedule-field schedule-title-field" for="schedule-title">Task title<input id="schedule-title" type="text" maxlength="120" required placeholder="What do you want to work on?"></label>
+<label class="schedule-field" for="schedule-subject">Subject<select id="schedule-subject"></select></label>
+<label class="schedule-field" for="schedule-date">Due date<input id="schedule-date" type="date" required></label>
+<label class="schedule-field" for="schedule-priority">Priority<select id="schedule-priority"><option value="high">High</option><option value="med" selected>Medium</option><option value="low">Low</option></select></label>
+<label class="schedule-field schedule-notes-field" for="schedule-notes">Notes (optional)<textarea id="schedule-notes" rows="2" maxlength="1000" placeholder="Add a reminder or a few details"></textarea></label>
+<div class="schedule-form-actions"><button class="add-button" id="schedule-submit" type="submit">Add task</button><button class="add-button ghost" id="schedule-cancel" type="button" hidden>Cancel edit</button></div>
+</form>
+<p class="form-message" id="schedule-message" role="status" aria-live="polite"></p>
+</section>
+<section class="schedule-list-section" aria-labelledby="schedule-list-title">
+<div class="section-heading"><div><h2 id="schedule-list-title">Your schedule<span class="task-count" id="schedule-count">0</span></h2></div></div>
+<div class="schedule-controls">
+<div class="schedule-views" role="group" aria-label="Schedule date view"><button class="filter-button is-selected" type="button" data-schedule-view="today" aria-pressed="true">Today</button><button class="filter-button" type="button" data-schedule-view="tomorrow" aria-pressed="false">Tomorrow</button><button class="filter-button" type="button" data-schedule-view="upcoming" aria-pressed="false">Upcoming</button><button class="filter-button" type="button" data-schedule-view="all" aria-pressed="false">All</button></div>
+<label class="schedule-filter" for="schedule-filter-subject">Subject<select id="schedule-filter-subject"></select></label>
+<label class="schedule-filter" for="schedule-filter-status">Completion<select id="schedule-filter-status"><option value="all">All tasks</option><option value="active">Not completed</option><option value="completed">Completed</option></select></label>
+</div>
+<ul class="task-list schedule-list" id="schedule-list" aria-label="Scheduled tasks"></ul>
+<div class="empty-state" id="schedule-empty"><p class="empty-title">Nothing scheduled for this view</p><p class="empty-description">Add a task above or choose another date view.</p></div>
+</section>
+</main></div></body></html>

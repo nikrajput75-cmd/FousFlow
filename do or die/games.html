@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111318">
+<title>FocusFlow | Brain games</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a2e;--panel2:#17223a;--line:#293653;--text:#eef3ff;--muted:#9aa8c7;--accent:#8b7cff;--cyan:#57d8d0;--good:#53d6a2;--bad:#ff7c94;--gold:#ffd166}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#1c2850 0,transparent 38%),radial-gradient(ellipse at 95% 15%,#20204b 0,transparent 30%),var(--bg);color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+button,select,input{font:inherit}button{cursor:pointer}.app-shell{max-width:1160px;margin:auto;padding:26px 22px 60px}.topbar{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px;margin-bottom:34px}.breadcrumb strong{color:var(--text)}.breadcrumb-slash{padding:0 9px;color:#566381}.today-label{font-variant-numeric:tabular-nums}
+.hero{display:flex;justify-content:space-between;gap:22px;align-items:flex-end;margin-bottom:26px}.eyebrow{display:flex;align-items:center;gap:9px;color:var(--cyan);letter-spacing:.16em;font-weight:800;font-size:11px}.eyebrow-line{height:2px;width:23px;background:var(--cyan)}h1{font-size:clamp(32px,5vw,52px);letter-spacing:-.045em;line-height:1.05;margin:12px 0}.hero h1 span{color:var(--accent)}.welcome-description{max-width:620px;color:var(--muted);margin:0}.profile{min-width:210px;background:#121a2edb;border:1px solid var(--line);padding:14px;border-radius:17px}.profile label{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}.profile select{width:100%;background:#0d1426;color:var(--text);border:1px solid #354364;border-radius:10px;padding:10px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:26px 0}.stat{padding:15px 17px;background:#121a2edb;border:1px solid var(--line);border-radius:16px}.stat small{display:block;color:var(--muted);font-size:12px}.stat strong{display:block;font-size:25px;margin-top:4px;font-variant-numeric:tabular-nums}.stat .tiny{font-size:12px;color:var(--cyan);font-weight:600}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:25px 0 14px}.tab{border:1px solid var(--line);background:#11192b;color:var(--muted);border-radius:12px;padding:11px 15px;font-weight:700}.tab.is-selected,.tab:hover{background:linear-gradient(135deg,#7c6cff,#6256d8);color:white;border-color:transparent}.game-layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(250px,.75fr);gap:15px}.gboard,.side-card{background:linear-gradient(145deg,#141e34f5,#10182af5);border:1px solid var(--line);border-radius:22px;padding:clamp(18px,3vw,28px);min-width:0}.game-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:20px}.game-top h2{margin:0;font-size:23px;letter-spacing:-.025em}.game-top p{color:var(--muted);margin:5px 0 0;font-size:13px}.pill{white-space:nowrap;background:#28234d;color:#c9c2ff;border:1px solid #49417c;border-radius:99px;padding:6px 10px;font-size:11px;font-weight:800}.progress{height:7px;background:#26314a;border-radius:99px;overflow:hidden;margin:15px 0 22px}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--cyan));transition:width .25s}.prompt{font-size:clamp(23px,4vw,36px);font-weight:800;text-align:center;letter-spacing:.02em;padding:25px 10px 18px;overflow-wrap:anywhere}.subprompt{text-align:center;color:var(--muted);font-size:13px;margin-top:-10px;margin-bottom:18px}.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.answer{padding:14px 10px;background:#1b2842;color:var(--text);border:1px solid #354565;border-radius:13px;font-weight:750;transition:transform .12s,border .12s}.answer:hover{transform:translateY(-2px);border-color:var(--accent)}.answer:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}.answer.correct{background:#123a35;border-color:var(--good)}.answer.wrong{background:#442335;border-color:var(--bad)}.feedback{min-height:27px;text-align:center;margin:15px 0 4px;color:var(--muted);font-weight:650}.feedback.good{color:var(--good)}.feedback.bad{color:var(--bad)}.controls{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-top:13px}.primary,.secondary{border-radius:11px;padding:11px 15px;font-weight:800;border:1px solid transparent}.primary{background:var(--accent);color:white}.primary:hover{filter:brightness(1.1)}.secondary{background:#1a2740;color:var(--text);border-color:#354565}.secondary:disabled{opacity:.4;cursor:not-allowed}.side-card h3{margin:0 0 8px;font-size:16px}.side-card p{color:var(--muted);font-size:13px;margin:0 0 15px}.side-card+.side-card{margin-top:14px}.mission{padding:12px 0;border-top:1px solid var(--line)}.mission:first-of-type{border-top:0}.mission-row{display:flex;justify-content:space-between;gap:10px;font-size:13px}.mission-row span:last-child{color:var(--cyan);font-weight:800}.mini-progress{height:5px;background:#26314a;border-radius:99px;margin-top:8px;overflow:hidden}.mini-progress span{display:block;height:100%;background:var(--good);width:0}.streak-flame{color:var(--gold)}.memory-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;max-width:440px;margin:0 auto}.memory-tile{aspect-ratio:1;border:1px solid #354565;background:#1b2842;border-radius:13px;color:transparent;font-size:clamp(20px,4vw,30px);font-weight:800}.memory-tile.revealed{background:#292653;color:#fff;border-color:#8277ff}.memory-tile.matched{background:#123a35;color:#53d6a2;border-color:#53d6a2}.memory-tile:disabled{cursor:default}.hintline{text-align:center;color:var(--muted);font-size:12px;margin-top:15px}.empty-state{text-align:center;padding:20px}.end-score{font-size:44px;color:var(--cyan);font-weight:900;text-align:center}.footer-note{color:var(--muted);font-size:11px;margin-top:20px;text-align:center}
+@media(max-width:760px){.hero{align-items:stretch;flex-direction:column}.profile{max-width:none}.game-layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.topbar{margin-bottom:25px}.memory-grid{gap:7px}.gboard{padding:18px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="fx.css">
+<link rel="stylesheet" href="glass.css">
+<script src="script.js" defer></script>
+</head>
+<body data-page="games">
+<div class="app-shell">
+  <main class="main-content">
+  <header class="topbar"><div class="breadcrumb"><span>Workspace</span><span class="breadcrumb-slash">/</span><strong>Brain games</strong></div><time class="today-label" id="today-label"></time></header>
+  <section class="games-heading">
+    <div><p class="eyebrow"><span class="eyebrow-line"></span> YOUR DAILY BRAIN BREAK</p><h1>Play, think, <span>level up.</span></h1><p class="welcome-description">Quick challenges for your brain. Difficulty adapts to your current class, with streaks, XP, hints and personal bests to keep every round fresh.</p></div>
+    <div class="profile"><label for="classLevel">Your current class</label><select id="classLevel"><option value="1">Class 1</option><option value="2">Class 2</option><option value="3">Class 3</option><option value="4">Class 4</option><option value="5">Class 5</option><option value="6">Class 6</option><option value="7">Class 7</option><option value="8">Class 8</option><option value="9">Class 9</option><option value="10">Class 10</option><option value="11">Class 11</option><option value="12" selected>Class 12</option><option value="college">College / beyond</option></select></div>
+  </section>
+  <section class="stats" aria-label="Your game stats">
+    <div class="stat"><small>Total XP</small><strong id="xp">0</strong><span class="tiny">Keep building your streak</span></div>
+    <div class="stat"><small>Best streak</small><strong id="bestStreak">0 <span class="streak-flame">✦</span></strong><span class="tiny">Correct answers in a row</span></div>
+    <div class="stat"><small>Games played</small><strong id="played">0</strong><span class="tiny">Every round counts</span></div>
+    <div class="stat"><small>Personal best</small><strong id="personalBest">0%</strong><span class="tiny">Accuracy in a round</span></div>
+  </section>
+  <nav class="tabs" role="tablist" aria-label="Choose a game">
+    <button class="tab is-selected" type="button" role="tab" data-game="math" aria-selected="true">⚡ Math Sprint</button>
+    <button class="tab" type="button" role="tab" data-game="memory" aria-selected="false">🧠 Memory Matrix</button>
+    <button class="tab" type="button" role="tab" data-game="logic" aria-selected="false">🔎 Logic Lab</button>
+    <button class="tab" type="button" role="tab" data-game="science" aria-selected="false">🚀 STEM Challenge</button>
+  </nav>
+  <div class="game-layout">
+    <main class="gboard" id="gboard" role="tabpanel" aria-live="polite" tabindex="0"></main>
+    <aside>
+      <section class="side-card"><h3>Today's missions</h3><p>Small wins add up. Missions refresh when you reload the page.</p>
+        <div class="mission"><div class="mission-row"><span>Answer 5 questions</span><span id="missionQText">0 / 5</span></div><div class="mini-progress"><span id="missionQBar"></span></div></div>
+        <div class="mission"><div class="mission-row"><span>Get a 3-answer streak</span><span id="missionStreakText">0 / 3</span></div><div class="mini-progress"><span id="missionStreakBar"></span></div></div>
+        <div class="mission"><div class="mission-row"><span>Earn 50 XP</span><span id="missionXpText">0 / 50</span></div><div class="mini-progress"><span id="missionXpBar"></span></div></div>
+      </section>
+      <section class="side-card"><h3>How difficulty works</h3><p id="difficultyInfo">Class 12: advanced questions with multi-step patterns and higher-level reasoning.</p><p>Correct answers earn XP. Consecutive correct answers grow your streak. Use a hint if you get stuck — learning beats guessing.</p></section>
+    </aside>
+  </div>
+  <p class="footer-note">Progress is saved in this browser on this device. These games are for practice and fun, not a school assessment.</p>
+  </main>
+</div>
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  const $$ = s => [...document.querySelectorAll(s)];
+  const storeKey = 'focusflow-games-v2';
+  const defaults = {xp:0, bestStreak:0, played:0, personalBest:0, currentStreak:0, questionsToday:0, xpToday:0};
+  let stats = {...defaults};
+  try { stats = {...defaults, ...JSON.parse(localStorage.getItem(storeKey) || '{}')}; } catch(e) {}
+  let classLevel = '12', game = 'math', round = 0, score = 0, correctCount = 0, answered = false, question = null, hintUsed = false;
+  let memory = {first:null, lock:false, matched:0, moves:0, tiles:[]};
+  const levelName = () => classLevel === 'college' ? 'College / beyond' : 'Class ' + classLevel;
+  const levelNum = () => classLevel === 'college' ? 13 : Number(classLevel);
+  const difficulty = () => levelNum() <= 4 ? 'Starter' : levelNum() <= 7 ? 'Explorer' : levelNum() <= 10 ? 'Advanced' : 'Expert';
+  const save = () => { try { localStorage.setItem(storeKey, JSON.stringify(stats)); } catch(e) {} renderStats(); };
+  function renderStats() {
+    $('#xp').textContent = stats.xp;
+    $('#bestStreak').innerHTML = `${stats.bestStreak} <span class="streak-flame">✦</span>`;
+    $('#played').textContent = stats.played;
+    $('#personalBest').textContent = `${stats.personalBest}%`;
+    $('#missionQText').textContent = `${Math.min(5,stats.questionsToday)} / 5`;
+    $('#missionQBar').style.width = `${Math.min(100,stats.questionsToday/5*100)}%`;
+    $('#missionStreakText').textContent = `${Math.min(3,stats.bestStreak)} / 3`;
+    $('#missionStreakBar').style.width = `${Math.min(100,stats.bestStreak/3*100)}%`;
+    $('#missionXpText').textContent = `${Math.min(50,stats.xpToday)} / 50`;
+    $('#missionXpBar').style.width = `${Math.min(100,stats.xpToday/50*100)}%`;
+  }
+  function rand(n){return Math.floor(Math.random()*n)}
+  function shuffle(a){return a.sort(()=>Math.random()-.5)}
+  function setBoard(html){$('#gboard').innerHTML=html}
+  function shell(title,desc,badge,content){
+    return `<div class="game-top"><div><h2>${title}</h2><p>${desc}</p></div><span class="pill">${badge}</span></div><div class="progress"><span id="roundProgress" style="width:${round/10*100}%"></span></div>${content}`;
+  }
+  function updateDifficulty(){
+    const n=levelNum();
+    $('#difficultyInfo').textContent = `${levelName()}: ${difficulty()} mode. ${n<=4?'Short number patterns, simple arithmetic and small memory grids.':n<=7?'Multiplication, fractions, longer sequences and 4×4 memory challenges.':n<=10?'Negative numbers, powers, algebraic patterns and more complex reasoning.':n<=12?'Multi-step arithmetic, algebraic sequences, science concepts and abstract logic.':'Challenge mode: larger numbers, abstract logic and advanced STEM reasoning.'}`;
+  }
+  function startGame(){
+    round=0;score=0;correctCount=0;answered=false;hintUsed=false;
+    if(game==='memory'){startMemory();return}
+    nextQuestion();
+  }
+  function nextQuestion(){
+    answered=false;hintUsed=false;
+    if(round>=10){endRound();return}
+    question=makeQuestion(game);
+    const options=question.options.map((o,i)=>`<button class="answer" data-answer="${i}">${escapeHtml(String(o))}</button>`).join('');
+    setBoard(shell(gameTitle(),gameDescription(),`${difficulty()} · ${levelName()}`,`<div class="prompt">${escapeHtml(question.prompt)}</div><div class="subprompt">${question.sub||'Choose the best answer'}</div><div class="answers">${options}</div><div class="feedback" id="feedback" aria-live="polite"></div><div class="controls"><button class="secondary" id="hintBtn">💡 Hint (${hintUsed?0:1})</button><button class="primary" id="nextBtn" disabled>${round===9?'Finish round':'Next question →'}</button></div><div class="hintline">Question ${round+1} of 10 · Round score: <b id="roundScore">${score}</b></div>`));
+    $$('.answer').forEach(b=>b.addEventListener('click',()=>answer(Number(b.dataset.answer),b)));
+    $('#hintBtn').addEventListener('click',showHint);
+    $('#nextBtn').addEventListener('click',()=>{round++;nextQuestion()});
+  }
+  function gameTitle(){return ({math:'Math Sprint',logic:'Logic Lab',science:'STEM Challenge'})[game]}
+  function gameDescription(){return ({math:'Ten quick questions. Accuracy and streaks earn bonus XP.',logic:'Spot the rule, think sideways and trust the clues.',science:'Class-aware science, computing and general STEM questions.'})[game]}
+  function makeQuestion(type){
+    const n=levelNum();
+    if(type==='math'){
+      let a,b,ans,prompt,sub='';
+      if(n<=4){a=rand(20)+1;b=rand(10)+1;let op=rand(3);if(op===0){ans=a+b;prompt=`${a} + ${b} = ?`}else if(op===1){a=Math.max(a,b);ans=a-b;prompt=`${a} − ${b} = ?`}else{a=rand(10)+1;b=rand(5)+1;ans=a*b;prompt=`${a} × ${b} = ?`}}
+      else if(n<=7){a=rand(30)+5;b=rand(12)+2;let op=rand(4);if(op===0){ans=a+b;prompt=`${a} + ${b} = ?`}else if(op===1){ans=a*b;prompt=`${a} × ${b} = ?`}else if(op===2){ans=a*a;prompt=`${a}² = ?`}else{ans=a;prompt=`${a*b} ÷ ${b} = ?`}}
+      else if(n<=10){a=rand(25)-12;b=rand(15)-7;let op=rand(4);if(op===0){ans=a+b;prompt=`(${a}) + (${b}) = ?`}else if(op===1){ans=a*b;prompt=`(${a}) × (${b}) = ?`}else if(op===2){ans=a*a;prompt=`(${a})² = ?`}else{a=rand(12)+2;ans=a*a-1;prompt=`If x = ${a}, what is x² − 1?`}}
+      else {a=rand(12)+2;b=rand(10)+2;let op=rand(4);if(op===0){ans=a*a+b;prompt=`Evaluate ${a}² + ${b}`}else if(op===1){ans=(a+b)*(a-b);prompt=`(${a} + ${b})(${a} − ${b}) = ?`}else if(op===2){ans=2*a+b;prompt=`If x = ${a}, find 2x + ${b}`}else{ans=a*b+a;prompt=`Find ${a}(${b} + 1)`}}
+      return numericQuestion(prompt,ans,'Use the order of operations and check the sign.');
+    }
+    if(type==='logic'){
+      const bank = n<=4 ? [
+        ['What comes next? 2, 4, 6, 8, __',10,'Add 2 each time.'],['Which one is different: apple, banana, carrot, mango?','carrot','Three are fruits.'],['A week has 7 days. How many days are in 2 weeks?',14,'Multiply 7 by 2.'],['What comes next? 1, 2, 3, 4, __',5,'Count forward.']
+      ] : n<=7 ? [
+        ['What comes next? 3, 6, 12, 24, __',48,'Double each term.'],['Which is the odd one out: square, triangle, circle, cube?','cube','Three are 2D shapes.'],['I have 4 sides and opposite sides equal. What am I?','rectangle','Think of a quadrilateral.'],['What comes next? 1, 4, 9, 16, __',25,'These are square numbers.']
+      ] : n<=10 ? [
+        ['What comes next? 2, 6, 12, 20, 30, __',42,'The gaps are 4, 6, 8, 10…'],['All Bloops are Razzies. All Razzies are Lazzies. Are all Bloops Lazzies?','Yes','Follow the chain of categories.'],['What comes next? 1, 1, 2, 3, 5, 8, __',13,'Add the previous two numbers.'],['A clock shows 3:00. What is the angle between its hands?','90°','Each hour mark is 30 degrees.']
+      ] : [
+        ['What comes next? 1, 4, 9, 16, 25, __',36,'These are n².'],['If every Zib is a Wug and no Wug is a Teg, can a Zib be a Teg?','No','Use the two statements together.'],['What comes next? 2, 3, 5, 8, 12, 17, __',23,'The differences increase by 1.'],['A fair coin is flipped twice. Probability of two heads?','1/4','List the four equally likely outcomes.']
+      ];
+      const q=bank[rand(bank.length)];const opts=optionsFor(q[1],q[0]);return {prompt:q[0],answer:String(q[1]),options:opts,hint:q[2]};
+    }
+    const banks = n<=4 ? [
+      ['Which part of a plant usually absorbs water?','Roots',['Leaves','Roots','Flower','Stem'],'Roots take in water from the soil.'],
+      ['Which planet do we live on?','Earth',['Mars','Earth','Venus','Jupiter'],'It is the third planet from the Sun.'],
+      ['What does a computer use to point and click?','Mouse',['Printer','Mouse','Speaker','Monitor'],'It is a common input device.']
+    ] : n<=7 ? [
+      ['What is the chemical symbol for water?','H₂O',['CO₂','H₂O','O₂','NaCl'],'Water has hydrogen and oxygen.'],
+      ['Which force pulls objects toward Earth?','Gravity',['Friction','Magnetism','Gravity','Buoyancy'],'It keeps us on the ground.'],
+      ['Which number is prime?','17',['21','27','17','33'],'It has exactly two positive factors.']
+    ] : n<=10 ? [
+      ['Which gas do plants absorb during photosynthesis?','Carbon dioxide',['Oxygen','Nitrogen','Carbon dioxide','Hydrogen'],'It is used to make glucose.'],
+      ['What is the SI unit of force?','Newton',['Joule','Watt','Newton','Pascal'],'Named after a famous physicist.'],
+      ['In binary, what is decimal 5?','101',['100','101','110','111'],'4 + 1 in base two.']
+    ] : [
+      ['Which law relates voltage, current and resistance?','Ohm’s law',['Newton’s law','Ohm’s law','Kepler’s law','Hooke’s law'],'V = IR.'],
+      ['What is the derivative of x²?','2x',['x','2x','x²','2'], 'Use the power rule.'],
+      ['Which data structure follows FIFO?','Queue',['Stack','Queue','Tree','Graph'],'First in, first out.'],
+      ['Which particle has a negative charge?','Electron',['Proton','Neutron','Electron','Photon'],'It is found outside the nucleus.']
+    ];
+    const q=banks[rand(banks.length)];return {prompt:q[0],answer:q[1],options:shuffle([...q[2]]),hint:q[3]};
+  }
+  function numericQuestion(prompt,ans,hint){
+    let opts=new Set([ans]);while(opts.size<4){let delta=rand(9)+1;opts.add(ans+(Math.random()<.5?-delta:delta))}
+    return {prompt,answer:String(ans),options:shuffle([...opts]),hint};
+  }
+  function optionsFor(ans,prompt){let opts=[String(ans)];const distractors = typeof ans==='number'?[ans+2,ans-2,ans+5]:['Maybe','Cannot tell','Not enough information'];for(const x of distractors)if(String(x)!==String(ans)&&opts.length<4)opts.push(String(x));return shuffle(opts)}
+  function answer(index,btn){
+    if(answered)return;answered=true;
+    const picked=String(question.options[index]),correct=picked===String(question.answer);
+    $$('.answer').forEach(b=>{b.disabled=true;if(String(question.options[Number(b.dataset.answer)])===String(question.answer))b.classList.add('correct')});
+    const fb=$('#feedback');
+    if(correct){score++;correctCount++;stats.currentStreak++;stats.bestStreak=Math.max(stats.bestStreak,stats.currentStreak);const gain=10+Math.min(10,stats.currentStreak*2)+(hintUsed?0:2);stats.xp+=gain;stats.xpToday+=gain;fb.textContent=`Correct! +${gain} XP${stats.currentStreak>=3?' · '+stats.currentStreak+' in a row!':''}`;fb.className='feedback good'}
+    else{stats.currentStreak=0;btn.classList.add('wrong');fb.textContent=`Not quite — the answer is ${question.answer}. Keep going!`;fb.className='feedback bad'}
+    stats.questionsToday++;save();$('#roundScore').textContent=score;$('#nextBtn').disabled=false;$('#nextBtn').focus();$('#roundProgress').style.width=`${(round+1)/10*100}%`;
+  }
+  function showHint(){if(hintUsed)return;hintUsed=true;$('#hintBtn').disabled=true;$('#feedback').textContent='💡 Hint: '+question.hint;$('#feedback').className='feedback';}
+  function endRound(){
+    stats.played++;const pct=Math.round(correctCount/10*100);stats.personalBest=Math.max(stats.personalBest,pct);save();
+    setBoard(`<div class="empty-state"><div class="eyebrow" style="justify-content:center">ROUND COMPLETE</div><h2>${pct>=80?'Brain power unlocked!':pct>=50?'Nice work — keep going!':'Every attempt makes you sharper.'}</h2><div class="end-score">${score} / 10</div><p style="color:var(--muted)">Accuracy: ${pct}% · Class level: ${levelName()}</p><p>You earned XP for correct answers and streaks. Try another round to beat your best.</p><div class="controls"><button class="primary" id="again">Play another round ↻</button><button class="secondary" id="switch">Try another game</button></div></div>`);
+    $('#again').addEventListener('click',startGame);$('#switch').addEventListener('click',()=>{$('[data-game="memory"]').click()});
+  }
+  function startMemory(){
+    memory={first:null,lock:false,matched:0,moves:0,tiles:[]};
+    const n=levelNum(),pairs=n<=4?4:n<=7?6:n<=10?8:8;
+    const symbols=['●','◆','▲','★','♥','☀','☂','♫','✿','⬟','☯','♣'];
+    memory.tiles=shuffle(symbols.slice(0,pairs).flatMap((s,i)=>[{s,id:i},{s,id:i}]));
+    setBoard(shell('Memory Matrix','Memorise the tiles, then match all pairs. Your grid grows with your class. ',`${pairs} pairs · ${difficulty()}`,`<div class="prompt" style="font-size:25px">Find every matching pair</div><div class="subprompt">Moves: <b id="moves">0</b> · Matched: <b id="matched">0 / ${pairs}</b></div><div class="memory-grid" id="memoryGrid" style="grid-template-columns:repeat(${n<=4?4:4},minmax(0,1fr))"></div><div class="feedback" id="memoryFeedback">Tap two tiles to reveal their symbols.</div><div class="controls"><button class="secondary" id="resetMemory">Restart grid</button></div>`));
+    const grid=$('#memoryGrid');
+    memory.tiles.forEach((t,i)=>{const b=document.createElement('button');b.className='memory-tile';b.textContent='?';b.setAttribute('aria-label',`Hidden tile ${i+1}`);b.dataset.i=i;b.addEventListener('click',()=>flipTile(i,b));grid.appendChild(b)});
+  }
+  function flipTile(i,btn){
+    if(memory.lock||btn.disabled||btn.classList.contains('revealed'))return;
+    btn.classList.add('revealed');btn.textContent=memory.tiles[i].s;btn.setAttribute('aria-label',`Tile ${i+1}: ${memory.tiles[i].s}`);
+    if(memory.first===null){memory.first={i,btn};return}
+    const first=memory.first;memory.first=null;memory.moves++;$('#moves').textContent=memory.moves;
+    if(memory.tiles[first.i].id===memory.tiles[i].id){
+      first.btn.classList.add('matched');btn.classList.add('matched');first.btn.disabled=true;btn.disabled=true;memory.matched++;$('#matched').textContent=`${memory.matched} / ${memory.tiles.length/2}`;
+      stats.xp+=8;stats.xpToday+=8;save();$('#memoryFeedback').textContent='Match found! +8 XP';
+      if(memory.matched===memory.tiles.length/2){stats.played++;stats.personalBest=Math.max(stats.personalBest,Math.round(memory.tiles.length/2/memory.moves*100));save();$('#memoryFeedback').textContent=`Grid cleared in ${memory.moves} moves! Bonus: +20 XP`;stats.xp+=20;stats.xpToday+=20;save()}
+    }else{
+      memory.lock=true;$('#memoryFeedback').textContent='Not a match — remember their locations.';
+      setTimeout(()=>{first.btn.classList.remove('revealed');btn.classList.remove('revealed');first.btn.textContent='?';btn.textContent='?';first.btn.setAttribute('aria-label','Hidden tile');btn.setAttribute('aria-label','Hidden tile');memory.lock=false},750);
+    }
+  }
+  function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+  $$('.tab').forEach(tab=>tab.addEventListener('click',()=>{game=tab.dataset.game;$$('.tab').forEach(t=>{const selected=t===tab;t.classList.toggle('is-selected',selected);t.setAttribute('aria-selected',selected?'true':'false')});if(game==='memory')startMemory();else startGame()}));
+  $('#classLevel').addEventListener('change',e=>{classLevel=e.target.value;try{localStorage.setItem('focusflow-class-level',classLevel)}catch(err){}updateDifficulty();startGame()});
+  try{const saved=localStorage.getItem('focusflow-class-level');if(saved&&[...$('#classLevel').options].some(o=>o.value===saved))$('#classLevel').value=saved;classLevel=$('#classLevel').value}catch(e){}
+  $('#today-label').textContent=new Intl.DateTimeFormat(undefined,{weekday:'short',month:'short',day:'numeric'}).format(new Date());
+  updateDifficulty();renderStats();startGame();
+})();
+</script>
+</body>
+</html>

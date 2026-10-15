@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0f1629">
+<title>FocusFlow | Settings</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="fx.css">
+<link rel="stylesheet" href="glass.css">
+<script src="script.js" defer></script>
+</head>
+<body data-page="settings">
+<div class="app-shell">
+  <main class="main-content">
+    <header class="topbar">
+      <div class="breadcrumb">
+        <span>Workspace</span>
+        <span class="breadcrumb-slash">/</span>
+        <strong>Settings</strong>
+      </div>
+      <time class="today-label" id="today-label"></time>
+    </header>
+
+    <section class="block">
+      <h2>Appearance</h2>
+      <div class="set glass">
+        <label class="row" for="s-cursor">
+          <span>
+            <b>Custom cursor</b>
+            <small>Replaces the pointer with a dot and ring on mouse devices.</small>
+          </span>
+          <input type="checkbox" id="s-cursor">
+        </label>
+        <label class="row" for="s-fx">
+          <span>
+            <b>Visual effects</b>
+            <small>Background animation, 3D cube and card tilt. Turn off for a calmer interface.</small>
+          </span>
+          <input type="checkbox" id="s-fx">
+        </label>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2>Subjects</h2>
+      <div class="set glass">
+        <label for="s-subj">
+          <small>One subject per line (up to 12). Used by tasks and flashcards.</small>
+        </label>
+        <textarea id="s-subj" rows="5" maxlength="400" placeholder="e.g. Mathematics&#10;Physics&#10;Chemistry"></textarea>
+        <div>
+          <button class="add-button" id="s-save" type="button">Save subjects</button>
+        </div>
+        <p class="settings-status" id="settings-status" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2>Your data</h2>
+      <div class="set glass">
+        <p><small>Everything is stored in this browser only. Export a backup before clearing site data or switching devices. Backups do not include sign-in credentials.</small></p>
+        <div class="btnrow">
+          <button class="add-button" id="s-export" type="button">Export backup</button>
+          <label class="add-button ghost" for="s-import">Import backup</label>
+          <input class="visually-hidden" type="file" id="s-import" accept="application/json">
+          <button class="add-button ghost danger" id="s-reset" type="button">Delete all data</button>
+        </div>
+        <p class="settings-status" id="data-status" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#060d1f">
+<title>FocusFlow | Study</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="fx.css">
+<link rel="stylesheet" href="glass.css">
+<script src="script.js" defer></script>
+</head>
+<body data-page="study"><div class="app-shell"><main class="main-content">
+<header class="topbar"><div class="breadcrumb"><span>Workspace</span><span class="breadcrumb-slash">/</span><strong>Study</strong></div><time class="today-label" id="today-label"></time></header>
+<section class="study-heading"><p class="eyebrow"><span class="eyebrow-line"></span> STUDY LIBRARY</p><h1>Find your next <span>chapter.</span></h1><p class="welcome-description">Choose your class and subject to find NCERT books, chapter PDFs and complete-book downloads.</p></section>
+<section class="study-panel glass" aria-labelledby="study-choices-title">
+<h2 id="study-choices-title">What are you studying?</h2>
+<div class="study-controls">
+<label for="study-class">Your class
+<select id="study-class">
+<option value="">Choose your class</option>
+<option value="1">Class 1</option><option value="2">Class 2</option><option value="3">Class 3</option><option value="4">Class 4</option><option value="5">Class 5</option><option value="6">Class 6</option><option value="7">Class 7</option><option value="8">Class 8</option><option value="9">Class 9</option><option value="10">Class 10</option><option value="11">Class 11</option><option value="12">Class 12</option>
+</select></label>
+<label for="study-subject">Subject
+<select id="study-subject" disabled><option value="">Choose your class first</option></select></label>
+<label class="study-search-label" for="study-search">Search book titles
+<input id="study-search" type="search" placeholder="e.g. Mathematics" autocomplete="off" disabled></label>
+</div>
+<p class="study-status" id="study-status" role="status" aria-live="polite">Select your class to get started.</p>
+<div class="study-books" id="study-results"></div>
+</section>
+<p class="study-source">Books and PDFs open on the <a href="https://ncert.nic.in/textbook.php" target="_blank" rel="noopener noreferrer">official NCERT website</a>. The available titles and translations are provided by NCERT.</p>
+</main></div></body></html>

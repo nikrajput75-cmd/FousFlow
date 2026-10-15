@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#060d1f">
+<title>FocusFlow | Flashcards</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="fx.css">
+<link rel="stylesheet" href="glass.css">
+<script src="script.js" defer></script>
+</head><body data-page="cards"><div class="app-shell"><main class="main-content"><header class="topbar"><div class="breadcrumb"><span>Workspace</span><span class="breadcrumb-slash">/</span><strong>Flashcards</strong></div><time class="today-label" id="today-label"></time></header>
+<div class="stats" aria-label="Deck summary"><div class="stat glass"><b id="c-total">0</b><span>Cards</span></div><div class="stat glass"><b id="c-due">0</b><span>Due today</span></div><div class="stat glass"><b id="c-mast">0</b><span>Well known</span></div></div>
+<section class="block"><h2>Review</h2><article class="fcard glass" id="card" hidden><p class="fc-meta"><span id="c-side"></span> <span id="c-subj"></span></p><p class="fc-text" id="c-text"></p><div class="fc-actions"><button class="add-button" id="flip" type="button">Show answer</button><div id="rate" hidden><button class="add-button ghost" data-r="again" type="button">Again</button><button class="add-button" data-r="good" type="button">Got it</button></div></div></article>
+<div class="empty-state" id="none"><p class="empty-title">No cards due</p><p class="empty-description">Add a card below, or come back when your next review is due.</p></div></section>
+<section class="block"><h2>Add a card</h2><form class="task-form" id="c-form"><label class="visually-hidden" for="c-q">Question</label><input id="c-q" maxlength="300" placeholder="Question" autocomplete="off" required><label class="visually-hidden" for="c-a">Answer</label><input id="c-a" maxlength="500" placeholder="Answer" autocomplete="off" required><label class="visually-hidden" for="c-sel">Subject</label><select id="c-sel"></select><button class="add-button" type="submit">Add card</button></form></section>
+<section class="block"><h2>All cards</h2><ul class="task-list" id="c-list"></ul></section>
+</main></div></body></html>

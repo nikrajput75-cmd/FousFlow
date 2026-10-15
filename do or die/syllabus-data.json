@@ -1,0 +1,44 @@
+{
+  "academicSession": "2026-27",
+  "lastReviewed": "2026-10-15",
+  "status": "manual-entry-required",
+  "availableSessions": [
+    "2024-25",
+    "2025-26",
+    "2026-27",
+    "2027-28",
+    "2028-29",
+    "2029-30",
+    "2030-31"
+  ],
+  "subjectPresets": {
+    "9": ["Mathematics", "Science", "Social Science", "English", "Hindi"],
+    "10": ["Mathematics", "Science", "Social Science", "English", "Hindi"],
+    "11": {
+      "Science PCM": ["Physics", "Chemistry", "Mathematics", "English", "Computer Science"],
+      "Science PCB": ["Physics", "Chemistry", "Biology", "English"],
+      "Commerce": ["Accountancy", "Business Studies", "Economics", "English"],
+      "Humanities": ["English", "History", "Political Science", "Geography"]
+    },
+    "12": {
+      "Science PCM": ["Physics", "Chemistry", "Mathematics", "English", "Computer Science"],
+      "Science PCB": ["Physics", "Chemistry", "Biology", "English"],
+      "Commerce": ["Accountancy", "Business Studies", "Economics", "English"],
+      "Humanities": ["English", "History", "Political Science", "Geography"]
+    }
+  },
+  "sources": [
+    {
+      "name": "NCERT Textbooks PDF (Classes I-XII) index",
+      "url": "https://ncert.nic.in/textbook.php",
+      "provides": "Official textbook titles and chapter indexes for selected books."
+    },
+    {
+      "name": "CBSE Academics curriculum",
+      "url": "https://cbseacademic.nic.in/",
+      "provides": "Official CBSE curriculum and examination-syllabus documents; select the relevant academic session."
+    }
+  ],
+  "chapters": [],
+  "notice": "No verified NCERT textbook chapter and CBSE examination-syllabus crosswalk is bundled. Do not infer chapter names, order, or examination inclusion. Students can add chapters after checking the official sources."
+}

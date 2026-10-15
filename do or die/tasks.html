@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0f1629">
+<title>FocusFlow | Tasks</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="fx.css">
+<link rel="stylesheet" href="glass.css">
+<script src="script.js" defer></script>
+</head>
+<body data-page="tasks">
+<div class="app-shell">
+  <main class="main-content">
+    <header class="topbar">
+      <div class="breadcrumb">
+        <span>Workspace</span>
+        <span class="breadcrumb-slash">/</span>
+        <strong>Tasks</strong>
+      </div>
+      <time class="today-label" id="today-label"></time>
+    </header>
+
+    <nav class="section-nav" aria-label="Study planning">
+      <a class="section-nav-link is-current" href="tasks.html" aria-current="page">Tasks</a>
+      <a class="section-nav-link" href="schedule.html">Schedule</a>
+      <a class="section-nav-link" href="syllabus.html">Syllabus</a>
+    </nav>
+
+    <section class="summary-panel glass" aria-label="Daily progress">
+      <div class="summary-intro">
+        <span class="summary-icon" aria-hidden="true"><span></span></span>
+        <div>
+          <p class="summary-label">TODAY</p>
+          <p class="summary-caption" id="progress-caption"></p>
+        </div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-heading">
+          <span id="progress-count"></span>
+          <span id="progress-percent"></span>
+        </div>
+        <div class="progress-track" id="progress-bar" role="progressbar" aria-label="Task completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <span class="progress-fill" id="progress-fill"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="pomo glass" aria-label="Focus timer">
+      <div>
+        <p>FOCUS TIMER · <span id="pomo-mode">Focus</span></p>
+        <time id="pomo-time">25:00</time>
+        <small id="logged"></small>
+      </div>
+      <div class="pomo-set">
+        <div class="presets" role="group" aria-label="Duration presets">
+          <button class="chipbtn" type="button" data-min="15">15</button>
+          <button class="chipbtn" type="button" data-min="25">25</button>
+          <button class="chipbtn" type="button" data-min="45">45</button>
+          <button class="chipbtn" type="button" data-min="60">60</button>
+          <button class="chipbtn" type="button" data-min="5" data-mode="break">Break 5</button>
+        </div>
+        <div class="presets">
+          <label for="pomo-min">Custom minutes</label>
+          <input id="pomo-min" type="number" min="1" max="180" value="25">
+          <button class="chipbtn" id="pomo-plus" type="button">+5 min</button>
+        </div>
+      </div>
+      <div class="pomo-btns">
+        <button class="add-button" id="pomo-start" type="button">Start</button>
+        <button class="add-button ghost" id="pomo-reset" type="button">Reset</button>
+      </div>
+    </section>
+
+    <section class="tasks-section" aria-labelledby="tasks-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="tasks-title">Today's tasks<span class="task-count" id="task-count">0</span></h2>
+        </div>
+        <div class="task-filters" role="group" aria-label="Filter tasks">
+          <button class="filter-button is-selected" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-button" type="button" data-filter="active" aria-pressed="false">Active</button>
+          <button class="filter-button" type="button" data-filter="completed" aria-pressed="false">Completed</button>
+        </div>
+      </div>
+      <form class="task-form" id="task-form">
+        <label class="visually-hidden" for="task-input">New task</label>
+        <input id="task-input" type="text" maxlength="120" placeholder="Add a task (press / to jump here)" autocomplete="off" required>
+        <label class="visually-hidden" for="task-subj">Subject</label>
+        <select id="task-subj"></select>
+        <label class="visually-hidden" for="task-due">Due date</label>
+        <input id="task-due" type="date" required>
+        <label class="visually-hidden" for="task-pri">Priority</label>
+        <select id="task-pri">
+          <option value="high">High</option>
+          <option value="med" selected>Medium</option>
+          <option value="low">Low</option>
+        </select>
+        <button class="add-button" type="submit">Add task</button>
+      </form>
+      <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+      <ul class="task-list" id="task-list" aria-label="Today's tasks"></ul>
+      <div class="empty-state" id="empty-state">
+        <p class="empty-title" id="empty-title"></p>
+        <p class="empty-description" id="empty-description"></p>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2>This week</h2>
+      <div class="wk-scroll glass">
+        <table class="wk">
+          <caption class="visually-hidden">Tasks and focus time for each day this week</caption>
+          <thead>
+            <tr>
+              <th scope="col">Day</th>
+              <th scope="col">Completion</th>
+              <th scope="col">Focus</th>
+              <th scope="col">Done</th>
+              <th scope="col">Not done</th>
+            </tr>
+          </thead>
+          <tbody id="wk-body"></tbody>
+        </table>
+      </div>
+      <div class="charts">
+        <figure class="chart glass">
+          <figcaption>Tasks done and not done</figcaption>
+          <div id="ch-tasks"></div>
+          <p class="legend">
+            <span style="background:#5b9dff"></span>Done
+            <span style="background:#64748b"></span>Not done
+          </p>
+        </figure>
+        <figure class="chart glass">
+          <figcaption>Focus minutes per day</figcaption>
+          <div id="ch-focus"></div>
+        </figure>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>
